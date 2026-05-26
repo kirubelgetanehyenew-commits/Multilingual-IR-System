@@ -11,8 +11,34 @@ def translate_text(text, target_language):
             dest=target_language
         )
 
+        print(
+            "Translated:",
+            translated.text
+        )
+
         return translated.text
 
-    except:
+    except Exception as e:
 
-        return text
+        print(
+            "Translation Error:",
+            e
+        )
+
+        # fallback dictionary
+        dictionary = {
+
+            "education": "ትምህርት",
+            "technology": "ቴክኖሎጂ",
+            "health": "ጤና",
+            "government": "መንግስት",
+            "agriculture": "ግብርና",
+
+            "ትምህርት": "education",
+            "ቴክኖሎጂ": "technology",
+            "ጤና": "health",
+            "መንግስት": "government",
+            "ግብርና": "agriculture"
+        }
+
+        return dictionary.get(text.lower(), text)
